@@ -1,0 +1,362 @@
+/* =========================================================
+   RESET & TOKENS
+   ========================================================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, sans-serif;
+  background: #f7f8fa;
+  color: #222;
+}
+
+:root {
+  --primary: #1677ff;
+  --text: #222;
+  --text-muted: #666;
+  --border: #e5e7eb;
+  --surface: #fff;
+  --surface-muted: #f2f3f5;
+  --shadow: 0 8px 24px rgba(0,0,0,.08);
+  --radius: 12px;
+}
+
+/* =========================================================
+   APP LAYOUT (Sticky footer)
+   ========================================================= */
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* makes footer sticky */
+}
+
+.page-content,          /* generic wrapper for any page body */
+.transaction-page {     /* your transaction page root */
+  flex: 1;              /* pushes footer to bottom when content is small */
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.footer {
+  margin-top: auto;
+  padding: 2rem 0;
+  background: linear-gradient(to right, #434343, #000);
+  color: #fff;
+  text-align: center;
+}
+.footer a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s, border-bottom 0.2s;
+}
+.footer a:hover {
+  color: #ffefba;
+  border-bottom: 1px solid #ffefba;
+}
+
+/* =========================================================
+   TRANSACTION PAGE
+   ========================================================= */
+.transaction-page .filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+  background-color: #fafafa;
+  border-bottom: 1px solid #ddd;
+}
+.transaction-page .filters > * {
+  flex: 1 1 200px;
+  min-width: 120px;
+}
+.transaction-page .content {
+  flex: 1;
+  padding: 1rem 0;
+  width: 100%;
+  overflow-x: auto;
+}
+.transaction-page .content .ant-table-wrapper {
+  min-width: 600px;
+}
+.transaction-page .content .ant-table-cell {
+  padding: 8px 12px;
+  font-size: 0.9rem;
+}
+
+/* =========================================================
+   AUTH PAGES (Login / Register)
+   ========================================================= */
+.login-content,
+.register-content {
+  width: 100%;
+  flex: 1; /* keep them able to push footer */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1rem;
+}
+
+.login-page,
+.register-page {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.login-form,
+.register-form {
+  width: 100%;
+  max-width: 520px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+}
+
+.header-name {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text);
+  position: relative;
+}
+.header-name::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  margin: 0.5rem auto 0;
+  background: var(--primary);
+  border-radius: 999px;
+}
+
+/* AntD small overrides */
+.ant-form-item {
+  margin-bottom: 1rem;
+}
+.ant-form-item-label > label {
+  font-weight: 600;
+  color: var(--text);
+}
+.ant-input,
+.ant-input-affix-wrapper,
+.ant-input-password {
+  border-radius: 8px !important;
+  min-height: 44px;
+}
+.ant-input:focus,
+.ant-input-affix-wrapper-focused,
+.ant-input-password:focus-within {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.15);
+}
+.ant-alert {
+  border-radius: 8px;
+}
+
+/* Submit buttons */
+.login-form .btn,
+.register-form .btn {
+  width: 100%;
+  height: 44px;
+  border: none;
+  border-radius: 8px;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+  transition: transform .08s ease, box-shadow .2s ease;
+}
+.login-form .btn:disabled,
+.register-form .btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+.login-form .btn:not(:disabled):hover,
+.register-form .btn:not(:disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(22, 119, 255, 0.25);
+}
+
+/* Google button (you use login-with-google-btn in both) */
+.login-with-google-btn,
+.register-with-google-btn {
+  margin-top: 1rem;
+  width: 100%;
+  height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9ubmVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=') no-repeat 1rem center;
+  background-size: 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #757575;
+  box-shadow: 0 2px 4px rgba(52,66,101,0.1);
+  cursor: pointer;
+  transition: box-shadow 0.2s, background-color 0.15s;
+}
+.login-with-google-btn:hover,
+.register-with-google-btn:hover {
+  box-shadow: 0 4px 12px rgba(52,66,101,0.15);
+}
+.login-with-google-btn:active,
+.register-with-google-btn:active {
+  background-color: #f2f2f2;
+}
+.login-with-google-btn:focus,
+.register-with-google-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px #c8dafc;
+}
+
+/* Helper text / links */
+.text {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+.text a,
+.link1 {
+  color: var(--primary);
+  margin-left: 4px;
+}
+.text a:hover,
+.link1:hover {
+  text-decoration: underline;
+}
+
+/* “OR” separator */
+.line {
+  position: relative;
+  text-align: center;
+  margin: 1.5rem 0;
+  height: 1px;
+  background: transparent;
+}
+.line::before,
+.line::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 45%;
+  height: 1px;
+  background: var(--border);
+}
+.line::before { left: 0; }
+.line::after { right: 0; }
+.line span {
+  position: relative;
+  top: -0.7rem;
+  background: var(--surface);
+  padding: 0 0.75rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+/* =========================================================
+   UTILITIES
+   ========================================================= */
+.responsive-btn {
+  width: 100%;
+  max-width: 200px;
+}
+.page-not-found {
+  text-align: center;
+  padding: 4rem 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.email-sent-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* =========================================================
+   MEDIA QUERIES
+   ========================================================= */
+@media (max-width: 992px) {
+  .transaction-page .filters {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .transaction-page .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .transaction-page .filters > * {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .login-form,
+  .register-form {
+    padding: 1.5rem;
+    max-width: 480px;
+  }
+  .header-name {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .transaction-page .filters {
+    padding: 0.5rem 0;
+    gap: 0.5rem;
+  }
+  .transaction-page .filters > * {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+  .transaction-page .content {
+    padding: 0.5rem 0;
+  }
+
+  .login-content,
+  .register-content {
+    padding: 1.25rem 0.75rem;
+  }
+
+  .login-form,
+  .register-form {
+    padding: 1.25rem 1rem;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  .header-name {
+    font-size: 1.35rem;
+  }
+
+  .login-with-google-btn,
+  .register-with-google-btn {
+    background-position: 0.75rem center;
+    background-size: 1rem;
+    height: 42px;
+    font-size: 0.85rem;
+  }
+}

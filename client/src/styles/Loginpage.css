@@ -1,0 +1,170 @@
+/* -------------------- RESET -------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, sans-serif;
+  background: #f7f8fa;
+  color: #222;
+}
+
+/* -------------------- THEME TOKENS -------------------- */
+:root {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-muted: #f2f3f5;
+  --text: #222;
+  --text-muted: #666;
+  --primary: #1677ff; /* Ant Design primary default */
+  --border: #e5e7eb;
+  --shadow: 0 8px 24px rgba(0,0,0,.08);
+  --radius: 12px;
+}
+
+/* -------------------- PAGE LAYOUT -------------------- */
+.login-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2.5rem 1rem;
+  min-height: calc(100vh - 160px); /* adjust if your Header/Footer heights differ */
+}
+
+.login-page {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.login-form {
+  width: 100%;
+  max-width: 420px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+}
+
+/* -------------------- HEADINGS -------------------- */
+.header-name {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* -------------------- ANT OVERRIDES -------------------- */
+.ant-form-item-label > label {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.ant-input,
+.ant-input-affix-wrapper,
+.ant-input-password {
+  border-radius: 8px !important;
+  min-height: 44px;
+}
+
+.ant-alert {
+  border-radius: 8px;
+}
+
+/* -------------------- BUTTON -------------------- */
+.login-form .btn {
+  width: 100%;
+  height: 44px;
+  border: none;
+  border-radius: 8px;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+  transition: transform .08s ease, box-shadow .2s ease;
+}
+
+.login-form .btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.login-form .btn:not(:disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(22, 119, 255, 0.25);
+}
+
+/* -------------------- LINKS / TEXT -------------------- */
+.text {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.text a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.text a:hover {
+  text-decoration: underline;
+}
+
+/* Optional horizontal separator if you uncomment .line in JSX */
+.line {
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+  margin: 1.25rem 0;
+}
+
+/* -------------------- GOOGLE BTN (if you enable it) -------------------- */
+.login-with-google-btn {
+  margin-top: 1rem;
+  width: 100%;
+  height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  color: #222;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s ease, box-shadow .15s ease;
+}
+
+.login-with-google-btn:hover {
+  background: var(--surface-muted);
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+
+/* -------------------- RESPONSIVE -------------------- */
+@media (max-width: 768px) {
+  .login-form {
+    padding: 1.5rem;
+    max-width: 480px;
+  }
+}
+
+@media (max-width: 576px) {
+  .login-content {
+    padding: 1.25rem 0.75rem;
+    min-height: calc(100vh - 140px);
+  }
+
+  .login-form {
+    padding: 1.25rem 1rem;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  .header-name {
+    font-size: 1.5rem;
+  }
+}
